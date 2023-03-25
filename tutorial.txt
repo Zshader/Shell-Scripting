@@ -1,0 +1,244 @@
+
+####################################################################################################################
+echo hello
+
+echo - for printing anything in cli
+
+####################################################################################################################
+
+Interpreter
+
+#!/bin/bash
+
+#-hash -> sharp
+shebang
+!-bang -> bang
+
+
+#!/bin/python
+#!/bin/bash --> it could be anything 
+#!/bin/sh 
+#!/bin/csh
+
+Shebang line-->
+
+Ultimately, it's up to you to decide which one to use, by writing the «shebang» line as the very first line of the script.
+E.g.
+#!/bin/sh  -> will use sh (and whatever that happens to point to). Also it
+
+#!/bin/bash  ->will use /bin/bash if it's available (and fail with an error message if it's not).
+
+Bash and sh are both Unix shells, which are command-line interfaces for interacting with an operating system. Bash (short for Bourne-Again SHell) is a more feature-rich shell than sh (the Bourne shell) and is the default shell on most Linux distributions.
+Here are some key differences between Bash and sh:
+Features: Bash includes many additional features not found in sh, such as command-line editing, history, job control, and a more robust scripting language.
+Compatibility: Sh is a simpler shell and is designed to be POSIX-compliant, which means it should work the same way on any POSIX-compliant system. Bash, on the other hand, includes many non-standard features that may not work on all systems.
+Default shell: Most modern Linux distributions use Bash as their default shell, while sh is often used for scripting purposes or as a fallback shell on systems with limited resources.
+Speed: Because sh is a simpler shell, it may be faster than Bash in some cases, particularly on older or resource-limited systems.
+In summary, Bash is a more feature-rich and widely-used shell than sh, but sh may be a better choice in certain situations where POSIX-compatibility is important or system resources are limited.
+
+
+####################################################################################################################
+Variables
+
+You can use variables to store data in shell scripts. Here's an example:
+
+bash
+Copy code
+#!/bin/bash
+
+name="John"
+echo "Hello, $name!"
+This script defines a variable named name and assigns it the value "John". It then prints "Hello, John!" to the screen using the echo command.
+
+NAME="Pradeep"
+
+echo $NAME
+
+#echo "My name is $NAMEGUPTA"
+
+echo "My Name is ${NAME}Gupta" #concatenation
+
+####################################################################################################################
+ Shell Scripting - User Input & Comments 
+
+read -p "Enter your name" NAME
+
+read- command for reading the input
+-p --> flag for prompting 
+NAME -> Variable where the info is getting stored
+
+read -p "Enter your Pradeep's age:- " AGE
+
+echo "${NAME}'s age is $AGE."
+
+
+echo "Please enter your full name"
+
+read FNAME LNAME
+
+echo "My full name is $FNAME - $LNAME. "
+
+####################################################################################################################
+Shell Scripting - If & If/else 
+
+You can use conditional statements to make decisions in shell scripts. Here's an example:
+
+bash
+Copy code
+#!/bin/bash
+
+if [ "$1" = "hello" ]
+then
+    echo "Hello, world!"
+else
+    echo "Goodbye, world!"
+fi
+This script takes one argument and checks if it is equal to "hello". If it is, it prints "Hello, world!" to the screen. Otherwise, it prints "Goodbye, world!".
+
+####################################################################################################################
+Shell Scripting – Test Command
+
+    Flags for files and directories:
+
+    test -e filename: Checks whether the file exists or not. And return 1 if file exists and returns 0 if file does not exist.
+    test -d filename: Checks whether the file is a directory or not. And returns 0 if the file is a directory and returns 1 if the file is not a directory.
+    test -f filename: Checks whether the file is a regular file or not. And returns 0 if the file is a regular file and returns 1 if the file is not a regular file.
+    test -s filename: Checks whether the file is empty or not. And returns 0 if the file is not empty and returns 1 if the file is empty.
+    test -r filename: Checks whether the file is readable or not. And returns 0 if the file is readable and returns 1 if the file is not readable.
+    test -w filename: Checks whether the file is writable or not. And returns 0 if the file is writable and returns 1 if the file is not writable.
+    test -x filename: Checks whether the file is executable or not. And returns 0 if the file is executable and returns 1 if the file is not executable.
+
+Flags for  text strings
+
+    string1 = string2: Checks whether the two strings are equal or not. And returns 0 if the two strings are equal and returns 1 if the two strings are not equal.
+    string1 != string2: Checks whether the two strings are not equal or not. And returns 0 if the two strings are not equal and returns 1 if the two strings are equal.
+    -n string: Checks whether the string is empty or not. And returns 1 if the string is empty and returns 0 if the string is not empty.
+    -z string: Checks whether the string is empty or not. And returns 0 if the string is empty and returns 1 if the string is not empty.
+
+Flags for comparison of numbers
+
+    num1 -eq num2: Checks whether the two numbers are equal or not. And returns 0 if the two numbers are equal and returns 1 if the two numbers are not equal.
+    num1 -ne num2: Checks whether the two numbers are not equal or not. And returns 0 if the two numbers are not equal and returns 1 if the two numbers are equal.
+    num1 -gt num2: Checks whether the first number is greater than the second number or not. And returns 0 if the first number is greater than the second number and returns 1 if the first number is not greater than the second number.
+    num1 -ge num2: Checks whether the first number is greater than or equal to the second number or not. And returns 0 if the first number is greater than or equal to the second number and returns 1 if the first number is not greater than or equal to the second number.
+    num1 -lt num2: Checks whether the first number is less than the second number or not. And returns 0 if the first number is less than the second number and returns 1 if the first number is not less than the second number.
+    num1 -le num2: Checks whether the first number is less than or equal to the second number or not. And returns 0 if the first number is less than or equal to the second number and returns 1 if the first number is not less than or equal to the second number.
+
+Conditional flags
+
+    condition1 -a condition2: Checks whether the two conditions are true or not. And returns 0 if both the conditions are true and returns 1 if either of the conditions are false.
+    condition1 -o condition2: Checks whether the two conditions are true or not. And returns 0 if either of the conditions are true and returns 1 if both the conditions are false.
+    !expression: Checks whether the expression is true or not. And returns 0 if the expression is false and returns 1 if the expression is true.
+
+####################################################################################################################
+Shell Scripting - For Loops 
+
+You can use loops to repeat commands in shell scripts. Here's an example:
+
+bash
+Copy code
+#!/bin/bash
+
+for i in {1..5}
+do
+    echo "Counting: $i"
+done
+This script uses a for loop to count from 1 to 5 and print each number to the screen.
+
+####################################################################################################################
+ Shell Scripting - Functions 
+
+ Functions in shell scripting are a way to group a set of commands together and reuse them throughout a script. They are similar to functions in other programming languages and can be defined using the following syntax:
+
+
+function_name() {
+    # commands to be executed
+}
+Here, function_name is the name of the function, and the commands inside the curly braces are the set of commands that will be executed when the function is called.
+
+To call a function, you simply need to use its name followed by parentheses:
+
+
+function_name
+
+You can also pass arguments to a function, which are accessible within the function using the special variables $1, $2, $3, and so on. For example:
+
+bash
+Copy code
+function_name() {
+    echo "Hello, $1!"
+}
+
+function_name "Alice"  # Output: Hello, Alice!
+
+```
+└─$ cat functions.sh         
+#!/bin/bash
+
+function directory_checker () {
+
+        #code
+}
+
+directory_checker() {
+
+# code
+
+}
+```
+Functions can be used to make your shell script more modular and easier to read and maintain. You can define a function once and call it multiple times throughout your script, rather than duplicating the same set of commands over and over again.
+
+####################################################################################################################
+
+ Shell Scripting - Ping Sweep Script 
+
+
+#!/bin/bash
+
+echo "Welcome to pingsweep, please enter a subnet in format x.x.x"
+
+read SUBNET
+
+for i in $(seq 250 254);
+do 
+        ping -w 1 -c 1 $SUBNET.$i
+
+
+done
+
+
+####################################################################################################################
+
+ Shell Scripting - Password Generator 
+└─$ cat pass-generator-base64.sh  
+#!/bin/bash
+
+echo "Welcome to random password generator"
+
+echo "Please enter the length of the password you want to create: "
+read LEN
+
+for i in $(seq 1 5);
+do 
+        openssl rand -base64 48 | cut -c1-$LEN
+done
+
+##################################
+
+└─$ cat pass-generator-hex.sh                        
+#!/bin/bash
+
+echo "Welcome to random password generator"
+
+echo "Please enter the length of the password you want to create: "
+read LEN
+
+for i in $(seq 1 5);
+do 
+        openssl rand -hex 48 | cut -c1-$LEN
+done
+
+
+####################################################################################################################
+
+
